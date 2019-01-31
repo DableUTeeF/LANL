@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from models import stupidcnn
+from models import *
 import numpy as np
 from datagen import TimeseriesGenerator
 import tensorflow as tf
@@ -13,10 +13,10 @@ set_session(sess)
 
 
 if __name__ == '__main__':
-    model = stupidcnn()
-    model.load_weights('weights/morestupidcnn.h5')
+    model = stupidflattencnn()
+    model.load_weights('weights/stupidflattencnn.h5')
     output = []
-    with open('prd/morestupidcnn.txt', 'w') as wr:
+    with open('prd/stupidflattencnn.txt', 'w') as wr:
         wr.write('seg_id,time_to_failure\n')
         for seg in os.listdir("../input/test"):
             csv = pd.read_csv('../input/test/'+seg, dtype={"acoustic_data": np.int8},)
